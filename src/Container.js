@@ -3,9 +3,10 @@ export default class Container extends Array {
 
   constructor(options){
     super()
+
     options = options || {}
-    this.x = options.x //|| $(opt.table).width()/2
-    this.y = options.y //|| $(opt.table).height()/2
+    this.x = options.x || $(config.table).width()/2
+    this.y = options.y || $(config.table).height()/2
     this.faceUp = options.faceUp
   }
 
@@ -47,12 +48,12 @@ export default class Container extends Array {
 
   render(options) {
     options = options || {}
-    const speed = options.speed || opt.animationSpeed
+    const speed = options.speed || config.animationSpeed
     this.calcPosition(options)
     
     for (let i=0;i<this.length;i++) {
       const card = this[i]
-      zIndexCounter++
+      config.zIndexCounter++
       card.moveToFront()
 
       const top = parseInt($(card.el).css('top'))
@@ -78,7 +79,7 @@ export default class Container extends Array {
       }
     }
     if (options.immediate) {
-      flip()
+      flip.call(this)
     } else {
       setTimeout(flip.bind(this), speed/2)
     }

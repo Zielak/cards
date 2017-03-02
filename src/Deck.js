@@ -1,11 +1,12 @@
-import Container from './container'
+
+import Container from './Container'
 
 export default class Deck extends Container{
 
   calcPosition(options) {
     options = options || {}
-    var left = Math.round(this.x-opt.cardSize.width/2, 0)
-    var top = Math.round(this.y-opt.cardSize.height/2, 0)
+    var left = Math.round(this.x - config.cardSize.width/2, 0)
+    var top = Math.round(this.y - config.cardSize.height/2, 0)
     var condenseCount = 6
 
     for (var i=0; i<this.length; i++) {

@@ -13,6 +13,11 @@ module.exports = {
     filename: '[name].js',
     path: path.join(__dirname, 'dist'),
   },
+  resolve: {
+    alias: {
+      jquery: 'jquery/src/jquery'
+    }
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -24,7 +29,11 @@ module.exports = {
     //   /[\/\\]node_modules[\/\\]jquery[\/\\]jquery\.js$/
     // ],
     loaders: [
-      { test: /src[\/\\]\.js$/, use: 'babel-loader', exclude: 'node_modules' },
+      {
+        test: /.js$/,
+        loaders: 'buble-loader',
+        include: path.join(__dirname, 'src'),
+      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -34,13 +43,13 @@ module.exports = {
       },
       { test: /\.html$/, use: ['file-loader?name=[name].[ext]'] },
       // { test: /\.html$/, use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader?name=[path][name].[ext]'] },
-      { test: /node_modules[\/\\](.*)jquery\.js$/, use: ['file-loader?name=[name].[ext]']}
+      // { test: /node_modules[\/\\](.*)jquery\.js$/, use: ['file-loader?name=[name].[ext]']}
     ]
   },
   plugins: [
     new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
-      // $: 'jquery',
+      $: 'jquery',
       config: path.join(__dirname, 'src/config')
     })
   ]

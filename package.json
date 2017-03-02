@@ -5,16 +5,13 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "build": "webpack",
     "watch": "webpack --progress --watch"
   },
   "author": "Darek Greenly",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-env": "^1.1.7",
     "css-loader": "^0.26.2",
     "eslint": "^3.16.1",
     "extract-loader": "^0.1.0",

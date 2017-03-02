@@ -1,18 +1,55 @@
 
+console.clear()
+
 import './index.html'
 require('./styles.css')
 
-import { card, deck, hand, pile } from './'
-import Game from './'
 
-const el = document.createElement('div')
-el.id = 'card-table'
+import Game from './Game'
+import Card from './Card'
+import Deck from './Deck'
+import Hand from './Hand'
+import Pile from './Pile'
 
-document.querySelector('body').appendChild(el)
-
-
-const game = new Game({
+const cards = new Game({
   table: '#card-table'
 })
 
 
+const deck = new Deck()
+
+deck.x -= 50
+deck.addCards( cards.all )
+deck.render({immediate: true})
+
+
+const upperhand = new Hand({
+  faceUp: false,
+  y: 60
+})
+
+const lowerhand = new Hand({
+  faceUp: true,
+  y: 340
+})
+
+const discardPile = new Deck({
+  faceUp: true
+})
+discardPile.x += 50
+
+
+
+
+
+$('#deal').click(function() {
+	//Deck has a built in method to deal to hands.
+	$('#deal').hide()
+  
+	deck.deal(5, [upperhand, lowerhand], 50, function() {
+		//This is a callback function, called when the dealing
+		//is done.
+		discardPile.addCard(deck.topCard());
+		discardPile.render();
+	})
+})

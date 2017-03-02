@@ -1,4 +1,5 @@
-import Container from './container'
+
+import Container from './Container'
 
 export default class Pile extends Container{
 

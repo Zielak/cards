@@ -9,15 +9,23 @@ export default class Card{
     this.name = this.suit.toUpperCase() + this.rank;
     this.faceUp = false;
 
-    this.el = $('<div/>').css({
+    this.el = $(`<div class="card suit-${this.suit} rank-${this.rank}">
+      <span class="suit-icon"></span>
+      <span class="rank-icon"></span>
+    </div>`)
+    .css({
       width: config.cardSize.width,
       height: config.cardSize.height,
       "background-image": 'url('+ options.cardsUrl + ')',
       position: 'absolute',
       cursor: 'pointer'
-    }).addClass('card').data('card', this).appendTo($(options.table));
-    this.showCard();
-    this.moveToFront();
+    })
+    .data('card', this)
+
+    this.el.appendTo($(options.table))
+
+    this.showCard()
+    this.moveToFront()
   }
 
   moveTo(x, y, speed, callback) {

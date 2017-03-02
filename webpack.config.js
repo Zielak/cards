@@ -35,10 +35,10 @@ module.exports = {
         include: path.join(__dirname, 'src'),
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
         })
       },
       { test: /\.html$/, use: ['file-loader?name=[name].[ext]'] },

@@ -16,6 +16,33 @@ html, body {
   border-radius: 0.3em;
   border-bottom: 0.1em solid #666;
   border-right: 0.1em solid #666;
+
+  
+  &.suit-h{
+    .suit-icon:after{
+      content: '♥';
+      color: red;
+    }
+  }
+  &.suit-d{
+    .suit-icon:after{
+      content: '♦';
+      color: red;
+    }
+  }
+  &.suit-s{
+    .suit-icon:after{
+      content: '♠';
+      color: black;
+    }
+  }
+  &.suit-c{
+    .suit-icon:after{
+      content: '♣';
+      color: black;
+    }
+  }
+  
 }
 
 #buttons{

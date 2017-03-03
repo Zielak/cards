@@ -13,7 +13,14 @@ export default class Game {
       }
     }
 
-    this.all = []
+    this.players = []
+
+    this._currentPlayer = 0
+    Object.defineProperty(this, '', {
+      get: () => this.players[_currentPlayer],
+    })
+
+    this.allCards = []
 
     var start = config.acesHigh ? 2 : 1
     var end = start + 12
@@ -22,25 +29,25 @@ export default class Game {
        config.table.css('position', 'relative')
     }
     for (var i = start; i <= end; i++) {
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 'h',
         rank: i,
         table: config.table
       }))
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 's',
         rank: i,
         table: config.table
       }))
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 'd',
         rank: i,
         table: config.table
       }))
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 'c',
         rank: i,
@@ -48,7 +55,7 @@ export default class Game {
       }))
     }
     if (config.blackJoker) {
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 'bj',
         rank: 0,
@@ -56,7 +63,7 @@ export default class Game {
       }))
     }
     if (config.redJoker) {
-      this.all.push(new Card({
+      this.allCards.push(new Card({
         game: this,
         suit: 'rj',
         rank: 0,
@@ -65,7 +72,7 @@ export default class Game {
     }
     
     $('.card').click(mouseEvent)
-    this.shuffle(this.all)
+    this.shuffle(this.allCards)
 
   }
 

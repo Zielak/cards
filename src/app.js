@@ -12,58 +12,55 @@ import Hand from './Hand'
 import Pile from './Pile'
 import Player from './Player'
 
-const cards = new Game({
+const game = new Game({
   table: '#card-table',
   acesHigh: true,
 })
 
-const players = []
 
-let _currentPlayer = 0
-Object.defineProperty(this, 'currentPlayer', {
-  get: () => players[_currentPlayer],
-})
 
 
 const deck = new Deck()
 
 deck.x -= 50
-deck.addCards( cards.all )
+deck.addCards( game.allCards )
 deck.render({immediate: true})
 
 
-players.push( new Player(
-  new Hand({
-    faceUp: false,
-    y: 60,
-    x: config.table.width()/4,
-  }),
-  new Pile()
-) )
-players.push( new Player(
-  new Hand({
-    faceUp: false,
-    y: 60,
-    x: config.table.width()/4 * 3
-  }),
-  new Pile()
-) )
-players.push( new Player(
-  new Hand({
-    faceUp: false,
-    y: config.table.height()-60,
-    x: config.table.width()/4 * 3
-  }),
-  new Pile()
-) )
-players.push( new Player(
-  new Hand({
-    faceUp: false,
-    y: config.table.height()-60,
-    x: config.table.width()/4
-  }),
-  new Pile()
-) )
+game.players = [
+  new Player(
+    new Hand({
+      faceUp: false,
+      y: 60,
+      x: config.table.width()/4,
+    }),
+    new Pile()
+  ),
+  new Player(
+    new Hand({
+      faceUp: false,
+      y: 60,
+      x: config.table.width()/4 * 3
+    }),
+    new Pile()
+  ),
+  new Player(
+    new Hand({
+      faceUp: false,
+      y: config.table.height()-60,
+      x: config.table.width()/4 * 3
+    }),
+    new Pile()
+  ),
+  new Player(
+    new Hand({
+      faceUp: false,
+      y: config.table.height()-60,
+      x: config.table.width()/4
+    }),
+    new Pile()
+  )
+]
 
 
 
@@ -79,9 +76,9 @@ $('#deal').click(function() {
   //Deck has a built in method to deal to hands.
   $('#deal').hide()
 
-  deck.deal(7, players.map( v => {
+  deck.deal(7, game.players.map( v => {
     return v.hand
-  } ), 50, function() {
+  } ), 10, function() {
     //This is a callback function, called when the dealing
     //is done.
     discardPile.addCard(deck.topCard());
@@ -92,8 +89,8 @@ $('#deal').click(function() {
 
 deck.click( function(card) {
   if (card === deck.topCard()) {
-    this.currentPlayer.hand.addCard( deck.topCard() )
-    this.currentPlayer.hand.render()
+    game.currentPlayer.hand.addCard( deck.topCard() )
+    game.currentPlayer.hand.render()
   }
 }.bind(this))
 

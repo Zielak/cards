@@ -78,24 +78,31 @@ export default class Game {
 
   shuffle(deck) {
     //Fisher yates shuffle
-    var i = deck.length;
-    if (i == 0) return;
+    var i = deck.length
+    if (i == 0) return
     while (--i) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tempi = deck[i];
-      var tempj = deck[j];
-      deck[i] = tempj;
-      deck[j] = tempi;
+      var j = Math.floor(Math.random() * (i + 1))
+      var tempi = deck[i]
+      var tempj = deck[j]
+      deck[i] = tempj
+      deck[j] = tempi
+    }
+  }
+
+  nextPlayer(){
+    this._currentPlayer ++
+    if(this._currentPlayer > this.players.length-1){
+      this._currentPlayer = 0
     }
   }
 }
 
 function mouseEvent(ev) {
-  var card = $(this).data('card');
+  var card = $(this).data('card')
   if (card.container) {
-    var handler = card.container._click;
+    var handler = card.container._click
     if (handler) {
-      handler.func.call(handler.context||window, card, ev);
+      handler.func.call(handler.context||window, card, ev)
     }
   }
 }

@@ -19,7 +19,9 @@ const game = new Game({
 
 
 
-
+/**
+ * New deck of cards
+ */
 const deck = new Deck()
 
 deck.x -= 50
@@ -27,6 +29,9 @@ deck.addCards( game.allCards )
 deck.render({immediate: true})
 
 
+/**
+ * Generate all players
+ */
 game.players = [
   new Player(
     new Hand({
@@ -63,7 +68,9 @@ game.players = [
 ]
 
 
-
+/**
+ * Prepare discard pile
+ */
 const discardPile = new Deck({
   faceUp: true
 })
@@ -71,21 +78,30 @@ discardPile.x += 50
 
 
 
+/**
+ * Init button
+ */
 
-$('#deal').click(function() {
-  //Deck has a built in method to deal to hands.
-  $('#deal').hide()
-
-  deck.deal(7, game.players.map( v => {
-    return v.hand
-  } ), 10, function() {
-    //This is a callback function, called when the dealing
-    //is done.
-    discardPile.addCard(deck.topCard());
-    discardPile.render();
-  })
+deck.deal(7, game.players.map(v => {
+  return v.hand
+}), 10, function() {
+  // Dealing is done
+  discardPile.addCard(deck.topCard());
+  discardPile.render();
 })
 
+
+const moves = {
+  zombie: true,
+  action: true,
+  discard: true,
+}
+
+function resetMoves(){
+  moves.zombie = true
+  moves.action = true
+  moves.discard = true
+}
 
 deck.click( function(card) {
   if (card === deck.topCard()) {

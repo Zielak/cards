@@ -4,20 +4,24 @@ html, body {
 }
 
 #card-table {
-  width: 100%;
-  min-width: 400px;
-
-  height: 100%;
-  min-height: 400px;
+  width: 460px;
+  height: 560px;
 }
 
 .card {
-  background: #999;
+  background: #DDD;
+  padding: 0.2em;
   border-radius: 0.3em;
-  border-bottom: 0.1em solid #666;
   border-right: 0.1em solid #666;
+  border-bottom: 0.1em solid #666;
+  border-left: 0.1em solid #cacaca;
 
-  
+  .suit-icon, .rank-icon{
+    font-size: 1.3em;
+    width: 1em;
+    text-align: center;
+  }
+
   &.suit-h{
     .suit-icon:after{
       content: '♥';
@@ -25,9 +29,10 @@ html, body {
     }
   }
   &.suit-d{
+    background: #84b771;
     .suit-icon:after{
-      content: '♦';
-      color: red;
+      content: 'Ζ';
+      color: #333;
     }
   }
   &.suit-s{
@@ -42,6 +47,8 @@ html, body {
       color: black;
     }
   }
+
+
   
 }
 

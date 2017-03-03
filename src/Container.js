@@ -11,13 +11,13 @@ export default class Container extends Array {
   }
 
   click(func, context){
-    this._click = {funct:func, context:context}
+    this._click = {func:func, context:context}
   }
   mousedown(func, context){
-    this._mousedown = {funct:func, context:context}
+    this._mousedown = {func:func, context:context}
   }
   mouseup(func, context){
-    this._mouseup = {funct:func, context:context}
+    this._mouseup = {func:func, context:context}
   }
 
   addCard(card) {

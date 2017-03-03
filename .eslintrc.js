@@ -14,7 +14,7 @@ module.exports = {
   "rules": {
     "curly": [2, "multi-line"],
     "eqeqeq": 2,
-    "indent": ["error", "space", { "SwitchCase": 1 }],
+    "indent": ["error", { "SwitchCase": 1 }],
     "no-console": "off",
     "no-empty": 2,
     "no-eval": 2,

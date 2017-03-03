@@ -4,15 +4,11 @@ import Hand from './Hand'
 
 export default class Player {
 
-  constructor(options){
-    options = !options ? {} : options
-    
-    this.x = options.x
-    this.y = options.y
+  constructor(hand, pile, options) {
+    options = options || {}
 
-
+    this.hand = hand
+    this.pile = pile
   }
-
-  
 
 }

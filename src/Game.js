@@ -17,9 +17,9 @@ export default class Game {
 
     var start = config.acesHigh ? 2 : 1
     var end = start + 12
-    config.table = $(config.table)[0]
-    if ($(config.table).css('position') == 'static') {
-      $(config.table).css('position', 'relative')
+    config.table = $(config.table)
+    if ( config.table.css('position') == 'static') {
+       config.table.css('position', 'relative')
     }
     for (var i = start; i <= end; i++) {
       this.all.push(new Card({

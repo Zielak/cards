@@ -8,6 +8,7 @@ module.exports = {
   // target: 'web',
   entry: {
     app: path.join(__dirname, 'src/app.js'),
+    jquery: 'jquery'
   },
   output: {
     filename: '[name].js',
@@ -23,11 +24,8 @@ module.exports = {
     compress: true,
     port: 8088
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   module: {
-    // noParse: [
-    //   /[\/\\]node_modules[\/\\]jquery[\/\\]jquery\.js$/
-    // ],
     loaders: [
       {
         test: /.js$/,
@@ -42,15 +40,20 @@ module.exports = {
         })
       },
       { test: /\.html$/, use: ['file-loader?name=[name].[ext]'] },
-      // { test: /\.html$/, use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader?name=[path][name].[ext]'] },
-      // { test: /node_modules[\/\\](.*)jquery\.js$/, use: ['file-loader?name=[name].[ext]']}
     ]
   },
   plugins: [
     new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
-      $: 'jquery',
+      // $: 'jquery',
       config: path.join(__dirname, 'src/config')
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map',
+      exclude: ['jquery.js', 'styles.css']
+    }),
   ]
 }

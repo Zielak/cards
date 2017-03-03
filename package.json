@@ -12,6 +12,7 @@
   "author": "Darek Greenly",
   "license": "ISC",
   "devDependencies": {
+    "buble-loader": "^0.4.1",
     "css-loader": "^0.26.2",
     "eslint": "^3.16.1",
     "extract-loader": "^0.1.0",

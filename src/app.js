@@ -86,8 +86,10 @@ deck.deal(7, game.players.map(v => {
   return v.hand
 }), 10, function() {
   // Dealing is done
-  discardPile.addCard(deck.topCard());
-  discardPile.render();
+  discardPile.addCard(deck.topCard())
+  discardPile.render()
+
+  game.hideOtherCards()
 })
 
 
@@ -102,11 +104,18 @@ function resetMoves(){
   moves.action = true
   moves.discard = true
 }
+function recalculateMoves(player){
+  let hand = player.hand
 
+
+}
+
+
+// Final move, player can't do anything
 deck.click( function(card) {
   if (card === deck.topCard()) {
-    game.currentPlayer.hand.addCard( deck.topCard() )
-    game.currentPlayer.hand.render()
+    deck.deal(2, game.currentPlayer.hand, 100)
+    game.nextPlayer()
   }
 }.bind(this))
 

@@ -48,6 +48,13 @@ html, body {
     }
   }
 
+  &:not(.face-up){
+    background-color: #ffaeae;
+    .suit-icon, .rank-icon{
+      display: none;
+    }
+  }
+
 
   
 }

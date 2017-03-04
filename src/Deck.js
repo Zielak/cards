@@ -20,21 +20,25 @@ export default class Deck extends Container{
   }
   
   deal(count, hands, speed, callback) {
-    var me = this
     var i = 0
+    hands = !Array.isArray(hands) ? [hands] : hands
     var totalCount = count * hands.length
+
     function dealOne() {
-      if (me.length === 0 || i === totalCount) {
+      if (this.length === 0 || i === totalCount) {
         if (callback) {
           callback()
         }
         return
       }
-      hands[i%hands.length].addCard(me.topCard())
-      hands[i%hands.length].render({callback:dealOne, speed:speed})
+      hands[i%hands.length].addCard( this.topCard() )
+      hands[i%hands.length].render({
+        callback: dealOne.bind(this),
+        speed:speed
+      })
       i++
     }
-    dealOne()
+    dealOne.call(this)
   }
 
   toString() {

@@ -72,9 +72,9 @@ export default class Container extends Array {
     const flip = function(){
       for (let i=0; i<this.length; i++) {
         if (this.faceUp) {
-          this[i].showCard()
+          this[i].show()
         } else {
-          this[i].hideCard()
+          this[i].hide()
         }
       }
     }

@@ -16,9 +16,6 @@ export default class Game {
     this.players = []
 
     this._currentPlayer = 0
-    Object.defineProperty(this, '', {
-      get: () => this.players[_currentPlayer],
-    })
 
     this.allCards = []
 
@@ -89,11 +86,24 @@ export default class Game {
     }
   }
 
+  get currentPlayer(){
+    return this.players[this._currentPlayer]
+  } 
+
   nextPlayer(){
     this._currentPlayer ++
     if(this._currentPlayer > this.players.length-1){
       this._currentPlayer = 0
     }
+    this.hideOtherCards()
+  }
+
+  hideOtherCards(){
+    this.players.forEach( p => {
+      p.hand.forEach( c => {
+        p === this.currentPlayer ? c.show() : c.hide()
+      })
+    })
   }
 }
 

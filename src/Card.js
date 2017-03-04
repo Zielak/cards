@@ -23,7 +23,7 @@ export default class Card{
 
     this.el.appendTo( options.table )
 
-    this.showCard()
+    this.show()
     this.moveToFront()
   }
 
@@ -41,7 +41,7 @@ export default class Card{
       .css('-o-transform', 'rotate(' + angle + 'deg)')
   }
   
-  showCard() {
+  show() {
     var offsets = { "c": 0, "d": 1, "h": 2, "s": 3 }
     var xpos, ypos
     var rank = this.rank
@@ -51,17 +51,22 @@ export default class Card{
     xpos = -rank * config.cardSize.width
     ypos = -offsets[this.suit] * config.cardSize.height
     this.rotate(0)
-    $(this.el).css('background-position', xpos + 'px ' + ypos + 'px')
+    // $(this.el).css('background-position', xpos + 'px ' + ypos + 'px')
+    $(this.el).addClass('face-up')
+    return this
   }
 
-  hideCard(position) {
+  hide(position) {
     var y = config.cardback == 'red' ? 0 * config.cardSize.height : -1 * config.cardSize.height
     $(this.el).css('background-position', '0px ' + y + 'px')
     this.rotate(0)
+    $(this.el).removeClass('face-up')
+    return this
   }
   
   moveToFront() {
     $(this.el).css('z-index', config.zIndexCounter++)
+    return this
   }
 
   translateName(rank, suit){

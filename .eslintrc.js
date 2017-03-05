@@ -9,12 +9,13 @@ module.exports = {
   },
   "globals": {
     "require": true,
-    "$": true
+    "$": true,
+    "config": true
   },
   "rules": {
     "curly": [2, "multi-line"],
     "eqeqeq": 2,
-    "indent": ["error", { "SwitchCase": 1 }],
+    "indent": ["error", 2],
     "no-console": "off",
     "no-empty": 2,
     "no-eval": 2,
@@ -30,7 +31,7 @@ module.exports = {
     "no-var": 2,
     "no-var": 2,
     "prefer-const": 2,
-    "quotes": [2, "single"],
+    // "quotes": [2, "single"],
     "semi": [2, "never"]
   }
 }

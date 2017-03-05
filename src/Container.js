@@ -37,7 +37,7 @@ export default class Container extends Array {
 
   removeCard(card) {
     for (var i=0; i< this.length;i++) {
-      if (this[i] == card) {
+      if (this[i] === card) {
         this.splice(i, 1)
         return true
       }

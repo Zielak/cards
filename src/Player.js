@@ -1,7 +1,4 @@
 
-import Container from './Container'
-import Hand from './Hand'
-
 export default class Player {
 
   constructor(hand, pile, options) {

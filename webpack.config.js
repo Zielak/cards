@@ -48,9 +48,9 @@ module.exports = {
       // $: 'jquery',
       config: path.join(__dirname, 'src/config')
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    // }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
       exclude: ['jquery.js', 'styles.css']

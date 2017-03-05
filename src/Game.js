@@ -6,7 +6,7 @@ export default class Game {
   constructor(opts){
 
     if (opts) {
-      for (var i in opts) {
+      for (const i in opts) {
         if (opts.hasOwnProperty(i)) {
           config[i] = opts[i]
         }
@@ -19,13 +19,13 @@ export default class Game {
 
     this.allCards = []
 
-    var start = config.acesHigh ? 2 : 1
-    var end = start + 12
+    const start = config.acesHigh ? 2 : 1
+    const end = start + 12
     config.table = $(config.table)
-    if ( config.table.css('position') == 'static') {
-       config.table.css('position', 'relative')
+    if ( config.table.css('position') === 'static') {
+      config.table.css('position', 'relative')
     }
-    for (var i = start; i <= end; i++) {
+    for (let i = start; i <= end; i++) {
       this.allCards.push(new Card({
         game: this,
         suit: 'h',
@@ -75,12 +75,12 @@ export default class Game {
 
   shuffle(deck) {
     //Fisher yates shuffle
-    var i = deck.length
-    if (i == 0) return
+    let i = deck.length
+    if (i === 0) return
     while (--i) {
-      var j = Math.floor(Math.random() * (i + 1))
-      var tempi = deck[i]
-      var tempj = deck[j]
+      const j = Math.floor(Math.random() * (i + 1))
+      const tempi = deck[i]
+      const tempj = deck[j]
       deck[i] = tempj
       deck[j] = tempi
     }
@@ -107,9 +107,9 @@ export default class Game {
 }
 
 function mouseEvent(ev) {
-  var card = $(this).data('card')
+  const card = $(this).data('card')
   if (card.container) {
-    var handler = card.container._click
+    const handler = card.container._click
     if (handler) {
       handler.func.call(handler.context||window, card, ev)
     }

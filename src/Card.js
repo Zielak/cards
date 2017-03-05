@@ -38,11 +38,11 @@ export default class Card{
   // }
   
   show() {
-    var offsets = { "c": 0, "d": 1, "h": 2, "s": 3 }
-    var xpos, ypos
-    var rank = this.rank
-    if (rank == 14) {
-      rank = 1; //Aces high must work as well.
+    const offsets = { "c": 0, "d": 1, "h": 2, "s": 3 }
+    let xpos, ypos
+    let rank = this.rank
+    if (rank === 14) {
+      rank = 1 //Aces high must work as well.
     }
     xpos = -rank * config.cardSize.width
     ypos = -offsets[this.suit] * config.cardSize.height
@@ -53,7 +53,7 @@ export default class Card{
   }
 
   hide(position) {
-    var y = config.cardback == 'red' ? 0 * config.cardSize.height : -1 * config.cardSize.height
+    const y = config.cardback === 'red' ? 0 * config.cardSize.height : -1 * config.cardSize.height
     $(this.el).css('background-position', '0px ' + y + 'px')
     // this.rotate(0)
     $(this.el).removeClass('face-up')

@@ -95,16 +95,15 @@ export default class Game {
     if(this._currentPlayer > this.players.length-1){
       this._currentPlayer = 0
     }
-    this.hideOtherCards()
   }
 
-  hideOtherCards(){
-    this.players.forEach( p => {
-      p.hand.forEach( c => {
-        p === this.currentPlayer ? c.show() : c.hide()
-      })
-    })
-  }
+  // hideOtherCards(){
+  //   this.players.forEach( p => {
+  //     p.hand.forEach( c => {
+  //       p === this.currentPlayer ? c.show() : c.hide()
+  //     })
+  //   })
+  // }
 }
 
 function mouseEvent(ev) {

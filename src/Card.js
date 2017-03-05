@@ -3,9 +3,9 @@ export default class Card{
 
   constructor(options) {
     this.game = options.game
-    this.shortName = this.suit + this.rank
     this.suit = options.suit
     this.rank = options.rank
+    this.shortName = ''+this.suit + this.rank
     this.name = this.suit.toUpperCase() + this.rank
     this.faceUp = false
 
@@ -32,14 +32,10 @@ export default class Card{
     $(this.el).animate(props, speed || config.animationSpeed, callback)
   }
   
-  rotate(angle) {
-    $(this.el)
-      .css('-webkit-transform', 'rotate(' + angle + 'deg)')
-      .css('-moz-transform', 'rotate(' + angle + 'deg)')
-      .css('-ms-transform', 'rotate(' + angle + 'deg)')
-      .css('transform', 'rotate(' + angle + 'deg)')
-      .css('-o-transform', 'rotate(' + angle + 'deg)')
-  }
+  // rotate(angle) {
+  //   $(this.el)
+  //     .css('transform', 'rotate(' + angle + 'deg)')
+  // }
   
   show() {
     var offsets = { "c": 0, "d": 1, "h": 2, "s": 3 }
@@ -50,7 +46,7 @@ export default class Card{
     }
     xpos = -rank * config.cardSize.width
     ypos = -offsets[this.suit] * config.cardSize.height
-    this.rotate(0)
+    // this.rotate(0)
     // $(this.el).css('background-position', xpos + 'px ' + ypos + 'px')
     $(this.el).addClass('face-up')
     return this
@@ -59,7 +55,7 @@ export default class Card{
   hide(position) {
     var y = config.cardback == 'red' ? 0 * config.cardSize.height : -1 * config.cardSize.height
     $(this.el).css('background-position', '0px ' + y + 'px')
-    this.rotate(0)
+    // this.rotate(0)
     $(this.el).removeClass('face-up')
     return this
   }
